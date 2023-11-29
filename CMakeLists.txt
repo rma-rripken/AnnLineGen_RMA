@@ -10,4 +10,12 @@ enable_language(Fortran)
 # Source code
 add_subdirectory(src)
 install(TARGETS my_exe     DESTINATION "bin")
-install(TARGETS my_test     DESTINATION "bin")
+install(TARGETS Apr36     DESTINATION "bin")
+
+include(CTest)
+enable_testing()
+
+add_test(NAME mytest
+         COMMAND Apr36 
+         WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
+        )

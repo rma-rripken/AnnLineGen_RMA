@@ -1,0 +1,11 @@
+# Ignore build directory
+build/
+
+/Testing/
+
+# Ignore Fortran build artifacts
+*.o
+*.mod
+*.smod
+*.a
+*.lib
