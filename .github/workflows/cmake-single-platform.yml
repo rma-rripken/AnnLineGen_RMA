@@ -7,10 +7,13 @@ jobs:
       with:
         compiler: intel-classic
         version: 2021.9
+
     - name: Checkout
       uses: actions/checkout@v4
+
     - name: Get latest CMake
       uses: lukka/get-cmake@latest
+
     - name: Configure CMake
         # Configure CMake in a 'build' subdirectory. `CMAKE_BUILD_TYPE` is only required if you are using a single-configuration generator such as make.
         # See https://cmake.org/cmake/help/latest/variable/CMAKE_BUILD_TYPE.html?highlight=cmake_build_type
