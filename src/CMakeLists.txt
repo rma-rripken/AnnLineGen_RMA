@@ -38,4 +38,6 @@ set(MY_MODS ann.f90
             CACHE INTERNAL "")
 add_library(mylib "${MY_MODS}")
 add_executable(my_exe LineGenStandalone.f90)
+add_executable(my_test LineGenStandaloneTest.f90)
 target_link_libraries(my_exe PRIVATE mylib)
+target_link_libraries(my_test PRIVATE mylib)

@@ -119,7 +119,7 @@
                           ECTGT,liner1,liner2,loca,vari,ave_t,currM,currY,ForceOp)  
      
  
-     !write(*,*) slp_int
+     write(*,*) slp_int
      pause
      close(UNIT=100) 
      !write(*,*) slp_int

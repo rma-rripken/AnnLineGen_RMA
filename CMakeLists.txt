@@ -10,3 +10,4 @@ enable_language(Fortran)
 # Source code
 add_subdirectory(src)
 install(TARGETS my_exe     DESTINATION "bin")
+install(TARGETS my_test     DESTINATION "bin")
