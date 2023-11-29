@@ -20,7 +20,7 @@ jobs:
     - name: Configure Project
       uses: threeal/cmake-action@v1.3.0
       with:
-        options: CMAKE_Fortran_COMPILER=C:\\Progra~2\\Intel\\oneAPI\\compiler\\2023.1.0\\windows\\bin\\ifort.exe
+        options: CMAKE_Fortran_COMPILER=C:/Progra~2/Intel/oneAPI/compiler/2023.1.0/windows/bin/ifort.exe
 
     - name: Build Project
       run: cmake --build build
