@@ -29,3 +29,8 @@ jobs:
 
     - name: Build Project
       run: cmake --build build
+
+    - name: Run unit tests
+      uses: HorstBaerbel/action-ctest@1.1      
+      with:
+        cmakeoptions: '--config Debug'      
