@@ -17,10 +17,15 @@ jobs:
     - name: Get latest CMake
       uses: lukka/get-cmake@latest
 
-    - name: Configure Project
-      uses: threeal/cmake-action@v1.3.0
-      with:
-        options: CMAKE_Fortran_COMPILER=C:/Progra~2/Intel/oneAPI/compiler/2023.1.0/windows/bin/intel64/ifort.exe
+    - name: Configure CMake
+        # Configure CMake in a 'build' subdirectory. `CMAKE_BUILD_TYPE` is only required if you are using a single-configuration generator such as make.
+        # See https://cmake.org/cmake/help/latest/variable/CMAKE_BUILD_TYPE.html?highlight=cmake_build_type
+      run: cmake -B ${{github.workspace}}/build -DCMAKE_BUILD_TYPE=${{env.BUILD_TYPE}}
+
+    #- name: Configure Project  # couldn't get this to work
+    #  uses: threeal/cmake-action@v1.3.0
+    #  with:
+    #    options: CMAKE_Fortran_COMPILER=C:/Progra~2/Intel/oneAPI/compiler/2023.1.0/windows/bin/intel64/ifort.exe
 
     - name: Build Project
       run: cmake --build build
