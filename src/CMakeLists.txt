@@ -36,8 +36,18 @@ set(MY_MODS ann.f90
 			X2Array.f90
 			X2_Daily.f90
             CACHE INTERNAL "")
-add_library(mylib "${MY_MODS}")
-add_executable(my_exe LineGenStandalone.f90)
-add_executable(Apr36 LineGenStandaloneTest.f90)
-target_link_libraries(my_exe PRIVATE mylib)
-target_link_libraries(Apr36 PRIVATE mylib)
+add_library(AnnLineGenLib "${MY_MODS}")
+#add_executable(AnnLineGenStandalone LineGenStandalone.f90)
+add_executable(Apr36 test/LineGenStandaloneTest.f90)
+#add_executable(DailyEc test/DailyEcTest.f90)
+add_executable(Apr36ANNECTest test/Apr36ANNECTest.f90)
+add_executable(May36ANNECTest test/May36ANNECTest.f90)
+#add_executable(AnnMonth test/AnnMonthTest.f90)
+#target_link_libraries(AnnLineGenStandalone PRIVATE AnnLineGenLib)
+target_link_libraries(Apr36 PRIVATE AnnLineGenLib)
+#target_link_libraries(DailyEc PRIVATE AnnLineGenLib)
+#target_link_libraries(AnnMonth PRIVATE AnnLineGenLib)
+
+target_link_libraries(Apr36ANNECTest PRIVATE AnnLineGenLib)
+target_link_libraries(May36ANNECTest PRIVATE AnnLineGenLib)
+
