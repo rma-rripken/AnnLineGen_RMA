@@ -19,13 +19,14 @@ program Apr36ANNECTest
     REAL, DIMENSION(1:5) :: Qsac_pr, Qexp_pr
     REAL, DIMENSION(1:5) :: Qsjr_pr, DICU_pr, Qsac_oth_pr, Qexp_oth_pr
     REAL, DIMENSION(1:5) :: VernEC_pr, DXC_pr
+    REAL, DIMENSION(1:3) :: targets
 
     INTEGER, DIMENSION(1:5) :: mon
 
     INTEGER :: loca, ave_t, currM, currY, indx, ind1
     REAL :: actual_val
 
-    DOUBLE PRECISION :: target_value, epsilon
+    DOUBLE PRECISION :: epsilon
 
     INTERFACE
         FUNCTION ANNEC(&
@@ -59,9 +60,9 @@ program Apr36ANNECTest
         END FUNCTION ANNEC
     END INTERFACE
 
-    open(UNIT = 100, file = 'EM_input_Apr36ANNEC.txt', status = 'old')
+    open(UNIT = 100, file = 'input_Apr36ANNEC.txt', status = 'old')
 
-    read (100, *) loca;
+
     read (100, *) ave_t;
     read (100, *) currM;
     read (100, *) currY;
@@ -93,18 +94,22 @@ program Apr36ANNECTest
     read (100, *)                              ;
     !consume ! mon(1:5)
     read (100, *) mon
-    read (100, *)                              ;
-    !consume ! expected value
-    read (100, *) target_value
-    read (100, *)                              ;
+
     !consume ! expected tolerance
+    read (100, *)                              ;
     read (100, *) epsilon
+    !consume ! expected EM value
+    read (100, *)                              ;
+    ! Reads 3 target values from the file: JP, then RS, then EM
+    read (100, *) targets
 
     close(UNIT = 100)
 
     300   format(1x, 5(1x, f19.12))
 
-    actual_val = ANNEC(&
+    ! No longer reads the location from the input file.  Now we loop over 1=JP, 2=RS, 3=EM
+    do loca = 1, 3
+        actual_val = ANNEC(&
             Qsac_pr(1), Qsac_pr(2), Qsac_pr(3), Qsac_pr(4), Qsac_pr(5), &
             Qexp_pr(1), Qexp_pr(2), Qexp_pr(3), Qexp_pr(4), Qexp_pr(5), &
             Qsjr_pr(1), Qsjr_pr(2), Qsjr_pr(3), Qsjr_pr(4), Qsjr_pr(5), &
@@ -116,25 +121,24 @@ program Apr36ANNECTest
             mon(1), mon(2), mon(3), mon(4), mon(5), &
             loca, ave_t, currM, currY)
 
+        if (abs(actual_val - targets(loca)) > epsilon) then
 
+            ! log the call and the values:
+            write(*, *) "ANNEC("
+            write(*, *) Qsac_pr(1), Qsac_pr(2), Qsac_pr(3), Qsac_pr(4), Qsac_pr(5)
+            write(*, *) Qexp_pr(1), Qexp_pr(2), Qexp_pr(3), Qexp_pr(4), Qexp_pr(5)
+            write(*, *) Qsjr_pr(1), Qsjr_pr(2), Qsjr_pr(3), Qsjr_pr(4), Qsjr_pr(5)
+            write(*, *) DXC_pr(1), DXC_pr(2), DXC_pr(3), DXC_pr(4), DXC_pr(5)
+            write(*, *) DICU_pr(1), DICU_pr(2), DICU_pr(3), DICU_pr(4), DICU_pr(5)
+            write(*, *) Qsac_oth_pr(1), Qsac_oth_pr(2), Qsac_oth_pr(3), Qsac_oth_pr(4), Qsac_oth_pr(5)
+            write(*, *) Qexp_oth_pr(1), Qexp_oth_pr(2), Qexp_oth_pr(3), Qexp_oth_pr(4), Qexp_oth_pr(5)
+            write(*, *) VernEC_pr(1), VernEC_pr(2), VernEC_pr(3), VernEC_pr(4), VernEC_pr(5)
+            write(*, *) mon(1), mon(2), mon(3), mon(4), mon(5)
+            write(*, *) loca, ave_t, currM, currY, ") = ", actual_val
 
-    if (abs(actual_val - target_value) > epsilon) then
-
-        ! log the call and the values:
-        write(*, *) "ANNEC("
-        write(*, *) Qsac_pr(1), Qsac_pr(2), Qsac_pr(3), Qsac_pr(4), Qsac_pr(5)
-        write(*, *) Qexp_pr(1), Qexp_pr(2), Qexp_pr(3), Qexp_pr(4), Qexp_pr(5)
-        write(*, *) Qsjr_pr(1), Qsjr_pr(2), Qsjr_pr(3), Qsjr_pr(4), Qsjr_pr(5)
-        write(*, *) DXC_pr(1), DXC_pr(2), DXC_pr(3), DXC_pr(4), DXC_pr(5)
-        write(*, *) DICU_pr(1), DICU_pr(2), DICU_pr(3), DICU_pr(4), DICU_pr(5)
-        write(*, *) Qsac_oth_pr(1), Qsac_oth_pr(2), Qsac_oth_pr(3), Qsac_oth_pr(4), Qsac_oth_pr(5)
-        write(*, *) Qexp_oth_pr(1), Qexp_oth_pr(2), Qexp_oth_pr(3), Qexp_oth_pr(4), Qexp_oth_pr(5)
-        write(*, *) VernEC_pr(1), VernEC_pr(2), VernEC_pr(3), VernEC_pr(4), VernEC_pr(5)
-        write(*, *) mon(1), mon(2), mon(3), mon(4), mon(5)
-        write(*, *) loca, ave_t, currM, currY, ") = ", actual_val
-
-        write(*, *) "actual_val ", actual_val, " is not within ", epsilon, " of ", target_value, ", stopping program with status -1"
-        stop -1
-    end if
+            write(*, *) "actual_val ", actual_val, " is not within ", epsilon, " of ", targets(loca), ", stopping program with status -1"
+            stop -1
+        end if
+    end do
 
 end program Apr36ANNECTest
