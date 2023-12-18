@@ -9,3 +9,6 @@ build/
 *.smod
 *.a
 *.lib
+
+.idea/
+cmake-build-debug/

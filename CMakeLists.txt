@@ -2,25 +2,29 @@ cmake_minimum_required(VERSION 3.27)
 
 
 project(AnnLineGen  VERSION 0.1
-        DESCRIPTION "My Fortran program"
+        DESCRIPTION "AnnLineGen "
         LANGUAGES Fortran)
 enable_language(Fortran)
 
 
 # Source code
 add_subdirectory(src)
-#install(TARGETS AnnLineGenStandalone     DESTINATION "bin")
+
 install(TARGETS Apr36     DESTINATION "bin")
-#install(TARGETS DailyEc     DESTINATION "bin")
-#install(TARGETS AnnMonth     DESTINATION "bin")
+install(TARGETS May36     DESTINATION "bin")
+
 install(TARGETS Apr36ANNECTest     DESTINATION "bin")
 install(TARGETS May36ANNECTest     DESTINATION "bin")
 
 include(CTest)
 enable_testing()
 
-add_test(NAME Apr32Test
+add_test(NAME Apr36Test
          COMMAND Apr36 
+         WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR})
+
+add_test(NAME May36Test
+         COMMAND May36
          WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR})
 
 add_test(NAME Apr36ANNECTest
