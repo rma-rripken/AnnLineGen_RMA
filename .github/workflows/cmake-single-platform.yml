@@ -1,4 +1,4 @@
-name: Build
+hname: Build
 on:
   push:
 jobs:
@@ -13,8 +13,8 @@ jobs:
         
     - name: Echo
       run: |
-        ${{ env.FC }}
-        ${{ steps.setup-fortran.outputs.fc }}
+        echo ${{ env.FC }}
+        echo ${{ steps.setup-fortran.outputs.fc }}
         
     - name: Checkout
       uses: actions/checkout@v4
