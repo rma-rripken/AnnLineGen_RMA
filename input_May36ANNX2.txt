@@ -1,0 +1,19 @@
+1		!      ave_t=1
+7		!      currM=5 !May (wateryear month 8)  (mo-1)
+1936	!      currY=1936 (Wateryear)
+!	SMSCG_OP(1:5)
+0,0,1,1,1
+!	Qexp_pr(1:5)
+5039,36816,80314,26151,24629
+!mon1(1:5)
+31,31,29,31,30
+!   expected tolerance
+0.01
+!   expected value
+62.5
+
+
+
+
+
+

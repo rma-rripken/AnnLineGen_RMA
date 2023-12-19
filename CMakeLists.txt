@@ -15,6 +15,7 @@ install(TARGETS May36     DESTINATION "bin")
 
 install(TARGETS Apr36ANNECTest     DESTINATION "bin")
 install(TARGETS May36ANNECTest     DESTINATION "bin")
+install(TARGETS Apr36ANNX2Test     DESTINATION "bin")
 
 include(CTest)
 enable_testing()
@@ -35,3 +36,10 @@ add_test(NAME May36ANNECTest
           COMMAND May36ANNECTest
           WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR})
 
+add_test(NAME Apr36ANNX2Test
+          COMMAND Apr36ANNX2Test
+          WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR})
+
+add_test(NAME May36ANNX2Test
+          COMMAND May36ANNX2Test
+          WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR})

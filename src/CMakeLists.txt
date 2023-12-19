@@ -49,3 +49,9 @@ target_link_libraries(Apr36ANNECTest PRIVATE AnnLineGenLib)
 
 add_executable(May36ANNECTest test/May36ANNECTest.f90)
 target_link_libraries(May36ANNECTest PRIVATE AnnLineGenLib)
+
+add_executable(Apr36ANNX2Test test/Apr36ANNX2Test.f90)
+target_link_libraries(Apr36ANNX2Test PRIVATE AnnLineGenLib)
+
+add_executable(May36ANNX2Test test/May36ANNX2Test.f90)
+target_link_libraries(May36ANNX2Test PRIVATE AnnLineGenLib)
