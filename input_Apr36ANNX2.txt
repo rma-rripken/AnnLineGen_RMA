@@ -1,7 +1,7 @@
 1		!      ave_type   1 is mo_ave
 6		!      currM=4 !Apr (wateryear month 7)   actually takes mo-1  so Apr 6 not 7
 1936	!      currY=1936 (Wateryear)
-!	Qsac_pr(1:5)
+!	SMSCG_OP(1:5)
 0,0,0,1,1
 !	Qexp_pr(1:5)
 6071,5039,36816,80314,26151
