@@ -10,7 +10,8 @@ jobs:
       with:
         compiler: intel-classic
         version: 2021.9      
-        
+    - name: Echo FC 
+      run: echo $env:FC
     - name: Checkout
       uses: actions/checkout@v4
 
