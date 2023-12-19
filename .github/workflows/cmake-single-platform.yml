@@ -10,6 +10,8 @@ jobs:
       with:
         compiler: intel-classic
         version: 2021.9      
+        
+    - name: Echo
       run: |
         ${{ env.FC }}
         ${{ steps.setup-fortran.outputs.fc }}
