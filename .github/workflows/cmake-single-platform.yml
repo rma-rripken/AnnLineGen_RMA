@@ -10,7 +10,10 @@ jobs:
       with:
         compiler: intel-classic
         version: 2021.9      
-
+        
+    - name: Call setvars.bat
+      run: call "C:\Program Files (x86)\Intel\oneAPI\setvars.bat"
+        
     - name: Checkout
       uses: actions/checkout@v4
 
