@@ -1,4 +1,5 @@
 # AnnLineGen_RMA
+[![Build](https://github.com/rma-rripken/AnnLineGen_RMA/actions/workflows/cmake-single-platform.yml/badge.svg)](https://github.com/rma-rripken/AnnLineGen_RMA/actions/workflows/cmake-single-platform.yml)
 
 This is a project to track/build/test AnnLineGen code.
 
