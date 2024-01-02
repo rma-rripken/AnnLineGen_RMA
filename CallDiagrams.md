@@ -42,6 +42,7 @@ graph TD;
     
     
 ```
+ANN_Month called with ave_type =1 which is monthly_ave
 
 
 The Apr36ANNx2Test call sequence:
