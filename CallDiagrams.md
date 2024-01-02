@@ -2,9 +2,9 @@ The Apr36ANNECTest call sequence:
 ```mermaid
 graph TD;
     Apr36ANNECTest-->annec.f90-ANNEC;
-    wresl-->annec.f90-AnnEC_matchDSM2;
-    annec.f90-AnnEC_matchDSM2-->ConservativeSpline.f90-ConservativeSpline7Months;
-    annec.f90-AnnEC_matchDSM2-->ann_ext.f90-ANN_Month;
+ %%   wresl-->annec.f90-AnnEC_matchDSM2;
+ %%   annec.f90-AnnEC_matchDSM2-->ConservativeSpline.f90-ConservativeSpline7Months;
+ %%   annec.f90-AnnEC_matchDSM2-->ann_ext.f90-ANN_Month;
     annec.f90-ANNEC-->ann_ext.f90-ANN_Month;
     ann_ext.f90-ANN_Month-->ann.f90-calcDaily;
     ann.f90-calcDaily-->scaleAndCopyDaily;
