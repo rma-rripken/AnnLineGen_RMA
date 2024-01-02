@@ -1,11 +1,11 @@
 The Apr36ANNECTest call sequence:
 ```mermaid
 graph TD;
-    Apr36ANNECTest-->[annec.f90-ANNEC](https://github.com/rma-rripken/AnnLineGen_RMA/blob/a0861788fe050fa4b421a0e3625c936d66e9dd9a/src/annec.f90#L38);
+    Apr36ANNECTest-->annec.f90-ANNEC;
  %%   wresl-->annec.f90-AnnEC_matchDSM2;
  %%   annec.f90-AnnEC_matchDSM2-->ConservativeSpline.f90-ConservativeSpline7Months;
  %%   annec.f90-AnnEC_matchDSM2-->ann_ext.f90-ANN_Month;
-    [annec.f90-ANNEC](https://github.com/rma-rripken/AnnLineGen_RMA/blob/a0861788fe050fa4b421a0e3625c936d66e9dd9a/src/annec.f90#L38)-->ann_ext.f90-ANN_Month;
+    annec.f90-ANNEC-->ann_ext.f90-ANN_Month;
     ann_ext.f90-ANN_Month-->ann.f90-calcDaily;
     ann.f90-calcDaily-->scaleAndCopyDaily;
     ann.f90-calcDaily-->fn_jp.f90-fnet-$LOCATION$-engine;
@@ -43,7 +43,7 @@ graph TD;
     
 ```
 ANN_Month called with ave_type =1 which is monthly_ave
-
+ANNEC:  https://github.com/rma-rripken/AnnLineGen_RMA/blob/a0861788fe050fa4b421a0e3625c936d66e9dd9a/src/annec.f90#L38
 
 The Apr36ANNx2Test call sequence:
 ```mermaid
