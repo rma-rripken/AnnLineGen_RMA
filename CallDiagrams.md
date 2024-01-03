@@ -1,4 +1,7 @@
-The EC test call sequence:
+## EC
+
+### Call sequence diagram
+
 ```mermaid
 graph TD;
     Apr36ANNECTest-->annec.f90-ANNEC;
@@ -39,22 +42,27 @@ graph TD;
 %%    fn_jp.f90-fnet_CCFB_intake_engine-->neural-net;
 %%    fn_jp.f90-fnet_beldan_engine-->neural-net;
 %%    fn_jp.f90-fnet_MTZ_engine-->neural-net;
-    
-    
+  
+  
 ```
+Note:  $LOCATION$ is a placeholder for one of: jp, orrsel, emm, antioch, CO, mallard, LosVaqueros, MidR_intake, Victoria_intake, CVP_intake, CCFB, CCFB_intake, beldan, MTZ
 
-|File|Method|Calls Into|
-|------|------|------|
-|[Apr36ANNECTest.f90](https://github.com/rma-rripken/AnnLineGen_RMA/blob/master/src/test/Apr36ANNECTest.f90)|Apr36AnnLineGenTest|[ANNEC](https://github.com/rma-rripken/AnnLineGen_RMA/blob/bd132e2aaf480c033c706d615bb942fc3f30bab4/src/test/Apr36ANNECTest.f90#L112)|
-|[annec.f90](https://github.com/rma-rripken/AnnLineGen_RMA/blob/master/src/annec.f90)|ANNEC|[ANN_Month](https://github.com/rma-rripken/AnnLineGen_RMA/blob/bd132e2aaf480c033c706d615bb942fc3f30bab4/src/ann_ext.f90#L48)|
-|[ann_ext.f90](https://github.com/rma-rripken/AnnLineGen_RMA/blob/master/src/ann_ext.f90)|ANN_Month|[calcdaily](https://github.com/rma-rripken/AnnLineGen_RMA/blob/bd132e2aaf480c033c706d615bb942fc3f30bab4/src/ann.f90#L106)|
-|[ann.f90](https://github.com/rma-rripken/AnnLineGen_RMA/blob/master/src/ann.f90)|calcdaily|[scaleAndCopyDaily](https://github.com/rma-rripken/AnnLineGen_RMA/blob/bd132e2aaf480c033c706d615bb942fc3f30bab4/src/ann.f90#L165)|
-|[ann.f90](https://github.com/rma-rripken/AnnLineGen_RMA/blob/master/src/ann.f90)|calcdaily|[fnet_jp_engine](https://github.com/rma-rripken/AnnLineGen_RMA/blob/bd132e2aaf480c033c706d615bb942fc3f30bab4/src/ann.f90#L188)|
+### Call sequence table
+
+| File                                                                                                        | Method              | Calls Into                                                                                                                            |
+| ----------------------------------------------------------------------------------------------------------- | ------------------- | ------------------------------------------------------------------------------------------------------------------------------------- |
+| [Apr36ANNECTest.f90](https://github.com/rma-rripken/AnnLineGen_RMA/blob/master/src/test/Apr36ANNECTest.f90) | Apr36AnnLineGenTest | [ANNEC](https://github.com/rma-rripken/AnnLineGen_RMA/blob/bd132e2aaf480c033c706d615bb942fc3f30bab4/src/test/Apr36ANNECTest.f90#L112) |
+| [annec.f90](https://github.com/rma-rripken/AnnLineGen_RMA/blob/master/src/annec.f90)                        | ANNEC               | [ANN_Month](https://github.com/rma-rripken/AnnLineGen_RMA/blob/bd132e2aaf480c033c706d615bb942fc3f30bab4/src/ann_ext.f90#L48)          |
+| [ann_ext.f90](https://github.com/rma-rripken/AnnLineGen_RMA/blob/master/src/ann_ext.f90)                    | ANN_Month           | [calcdaily](https://github.com/rma-rripken/AnnLineGen_RMA/blob/bd132e2aaf480c033c706d615bb942fc3f30bab4/src/ann.f90#L106)             |
+| [ann.f90](https://github.com/rma-rripken/AnnLineGen_RMA/blob/master/src/ann.f90)                            | calcdaily           | [scaleAndCopyDaily](https://github.com/rma-rripken/AnnLineGen_RMA/blob/bd132e2aaf480c033c706d615bb942fc3f30bab4/src/ann.f90#L165)     |
+| [ann.f90](https://github.com/rma-rripken/AnnLineGen_RMA/blob/master/src/ann.f90)                            | calcdaily           | [fnet_jp_engine](https://github.com/rma-rripken/AnnLineGen_RMA/blob/bd132e2aaf480c033c706d615bb942fc3f30bab4/src/ann.f90#L188)        |
 
 Note: ANN_Month called with ave_type=1 which == monthly_ave
 
+## X2
 
-The X2 call sequence:
+### Call sequence diagram:
+
 ```mermaid
 graph TD;
     Apr36ANNX2Test-->X2.f90-ANN_x2;
@@ -64,22 +72,19 @@ graph TD;
     ann.f90-calcx2daily-->ann.f90-scaleAndCopyDailyX2;
     ann.f90-calcx2daily-->fnet_X2.f90-fnet_X2_engine;
     fnet_X2.f90-fnet_X2_engine-->neural-net;
-    
-    
+  
+  
 ```
+### Call sequence table
 
-|File|Method|Calls Into|
-|------|-----|------|
-|[Apr36ANNX2Test.f90](https://github.com/rma-rripken/AnnLineGen_RMA/blob/master/src/test/Apr36ANNX2Test.f90)|Apr36ANNX2Test|[ANN_x2](https://github.com/rma-rripken/AnnLineGen_RMA/blob/cf830330f4f717e487af41aa2be7954305335a74/src/test/Apr36ANNX2Test.f90#L68)|
-|[X2.f90](https://github.com/rma-rripken/AnnLineGen_RMA/blob/master/src/X2.f90)|ANN_x2|[AnnX2](https://github.com/rma-rripken/AnnLineGen_RMA/blob/cf830330f4f717e487af41aa2be7954305335a74/src/X2.f90#L24)|
-|[AnnX2.f90](https://github.com/rma-rripken/AnnLineGen_RMA/blob/master/src/annx2.f90)|AnnX2|[ANN_X2_Month](https://github.com/rma-rripken/AnnLineGen_RMA/blob/cf830330f4f717e487af41aa2be7954305335a74/src/annx2.f90#L128)|
-|[ann_x2_ext.f90](https://github.com/rma-rripken/AnnLineGen_RMA/blob/master/src/ann_x2_ext.f90)|ANN_X2_Month|[calcx2daily](https://github.com/rma-rripken/AnnLineGen_RMA/blob/cf830330f4f717e487af41aa2be7954305335a74/src/ann_x2_ext.f90#L55)|
-|[ann.f90](https://github.com/rma-rripken/AnnLineGen_RMA/blob/master/src/ann.f90)|calcx2daily|[scaleAndCopyDailyX2](https://github.com/rma-rripken/AnnLineGen_RMA/blob/cf830330f4f717e487af41aa2be7954305335a74/src/ann.f90#L165)|
-|[ann.f90](https://github.com/rma-rripken/AnnLineGen_RMA/blob/master/src/ann.f90)|calcx2daily|[fnet_X2_engine](https://github.com/rma-rripken/AnnLineGen_RMA/blob/cf830330f4f717e487af41aa2be7954305335a74/src/ann.f90#L188)|
-
-
+| File                                                                                                        | Method         | Calls Into                                                                                                                            |
+| ----------------------------------------------------------------------------------------------------------- | -------------- | ------------------------------------------------------------------------------------------------------------------------------------- |
+| [Apr36ANNX2Test.f90](https://github.com/rma-rripken/AnnLineGen_RMA/blob/master/src/test/Apr36ANNX2Test.f90) | Apr36ANNX2Test | [ANN_x2](https://github.com/rma-rripken/AnnLineGen_RMA/blob/cf830330f4f717e487af41aa2be7954305335a74/src/test/Apr36ANNX2Test.f90#L68) |
+| [X2.f90](https://github.com/rma-rripken/AnnLineGen_RMA/blob/master/src/X2.f90)                              | ANN_x2         | [AnnX2](https://github.com/rma-rripken/AnnLineGen_RMA/blob/cf830330f4f717e487af41aa2be7954305335a74/src/X2.f90#L24)                   |
+| [AnnX2.f90](https://github.com/rma-rripken/AnnLineGen_RMA/blob/master/src/annx2.f90)                        | AnnX2          | [ANN_X2_Month](https://github.com/rma-rripken/AnnLineGen_RMA/blob/cf830330f4f717e487af41aa2be7954305335a74/src/annx2.f90#L128)        |
+| [ann_x2_ext.f90](https://github.com/rma-rripken/AnnLineGen_RMA/blob/master/src/ann_x2_ext.f90)              | ANN_X2_Month   | [calcx2daily](https://github.com/rma-rripken/AnnLineGen_RMA/blob/cf830330f4f717e487af41aa2be7954305335a74/src/ann_x2_ext.f90#L55)     |
+| [ann.f90](https://github.com/rma-rripken/AnnLineGen_RMA/blob/master/src/ann.f90)                            | calcx2daily    | [scaleAndCopyDailyX2](https://github.com/rma-rripken/AnnLineGen_RMA/blob/cf830330f4f717e487af41aa2be7954305335a74/src/ann.f90#L165)   |
+| [ann.f90](https://github.com/rma-rripken/AnnLineGen_RMA/blob/master/src/ann.f90)                            | calcx2daily    | [fnet_X2_engine](https://github.com/rma-rripken/AnnLineGen_RMA/blob/cf830330f4f717e487af41aa2be7954305335a74/src/ann.f90#L188)        |
 
 Note:
 ANN_x2 calls ANNX2 with same parameters but hard-coded "location" 13
-
-
