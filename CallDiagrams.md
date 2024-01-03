@@ -1,4 +1,4 @@
-The Apr36ANNECTest call sequence:
+The EC test call sequence:
 ```mermaid
 graph TD;
     Apr36ANNECTest-->annec.f90-ANNEC;
@@ -42,10 +42,19 @@ graph TD;
     
     
 ```
-ANN_Month called with ave_type =1 which is monthly_ave
-ANNEC:  https://github.com/rma-rripken/AnnLineGen_RMA/blob/a0861788fe050fa4b421a0e3625c936d66e9dd9a/src/annec.f90#L38
 
-The Apr36ANNx2Test call sequence:
+|File|Method|Calls Into|
+|------|------|------|
+|[Apr36ANNECTest.f90](https://github.com/rma-rripken/AnnLineGen_RMA/blob/master/src/test/Apr36ANNECTest.f90)|Apr36AnnLineGenTest|[ANNEC](https://github.com/rma-rripken/AnnLineGen_RMA/blob/bd132e2aaf480c033c706d615bb942fc3f30bab4/src/test/Apr36ANNECTest.f90#L112)|
+|[annec.f90](https://github.com/rma-rripken/AnnLineGen_RMA/blob/master/src/annec.f90)|ANNEC|[ANN_Month](https://github.com/rma-rripken/AnnLineGen_RMA/blob/bd132e2aaf480c033c706d615bb942fc3f30bab4/src/ann_ext.f90#L48)|
+|[ann_ext.f90](https://github.com/rma-rripken/AnnLineGen_RMA/blob/master/src/ann_ext.f90)|ANN_Month|[calcdaily](https://github.com/rma-rripken/AnnLineGen_RMA/blob/bd132e2aaf480c033c706d615bb942fc3f30bab4/src/ann.f90#L106)|
+|[ann.f90](https://github.com/rma-rripken/AnnLineGen_RMA/blob/master/src/ann.f90)|calcdaily|[scaleAndCopyDaily](https://github.com/rma-rripken/AnnLineGen_RMA/blob/bd132e2aaf480c033c706d615bb942fc3f30bab4/src/ann.f90#L165)|
+|[ann.f90](https://github.com/rma-rripken/AnnLineGen_RMA/blob/master/src/ann.f90)|calcdaily|[fnet_jp_engine](https://github.com/rma-rripken/AnnLineGen_RMA/blob/bd132e2aaf480c033c706d615bb942fc3f30bab4/src/ann.f90#L188)|
+
+Note: ANN_Month called with ave_type=1 which == monthly_ave
+
+
+The X2 call sequence:
 ```mermaid
 graph TD;
     Apr36ANNX2Test-->X2.f90-ANN_x2;
